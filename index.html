@@ -1,0 +1,128 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>To_do_App</title>
+    
+
+    <script type="module" src="https://unpkg.com/ionicons@7.1.0/dist/ionicons/ionicons.esm.js"></script>
+    <script nomodule src="https://unpkg.com/ionicons@7.1.0/dist/ionicons/ionicons.js"></script>
+    <link rel="icon" type="image/png" href="/assets/mylogo-ada8202e.jpg" />
+
+
+    <style>
+        #result-body div {
+            display: flex;
+            flex-direction: row;
+            min-height: -moz-fit-content;
+            min-height: fit-content;
+            width: 95%;
+            justify-content: space-around;
+            margin-bottom: 1rem;
+            background-color: white;
+            border: 1px white;
+            border-radius: 6px;
+        }
+
+        #result-body div p {
+            width: 100%;
+            text-align: center;
+        }
+    </style>
+  <script type="module" crossorigin src="/assets/index-6566bbb7.js"></script>
+  <link rel="stylesheet" href="/assets/index-c3bae2e3.css">
+</head>
+
+<body class="h-screen w-screen bg-gradient-to-t from-violet-500 to-blue-500">
+    <div class="items-center">
+        <header class="bg-white w-full ">
+            <p class="text-2xl px-12 py-4">To-Do List Web App</p>
+        </header>
+
+        <div class=" w-[100%] flex flex-col  lg:flex-row my-12 lg:space-x-16 mr-2 justify-center items-center ">
+
+            <div class="flex flex-col lg:mx-1/3  bg-white mx-6 min-h-fit overflow-hidden">
+                <input class="my-4 mx-4 px-2 py-2 border border-1 outline-blue-600 border-black " type="text"
+                    name="title" id="title" placeholder="  Title" required>
+                <textarea class="my-4 mx-4 px-2 py-2 border border-1 outline-blue-600 border-black " type="text"
+                    name="Description" id="mytextarea" placeholder="  Description" required></textarea>
+                <button id="btn" class="bg-green-500 hover:bg-green-600 rounded-lg my-2 text-white mx-4"
+                    onclick="save()">Save</button>
+            </div>
+
+            <div class="flex flex-row justify-center mr-2 lg:py-2 mt-8 border border-b border-white sm:min-h-fit w-fit">
+                <div id="result-table" class="items-center min-w-fit">
+                    <div class="flex flex-row justify-evenly border-b-blacks py-1 px-2 shadow-xl">
+                        <div class="flex flex-row space-x-8  min-w-fit sm:space-x-44 lg:space-x-56 xl:space-x-80">
+                            <p class="font-bold min-h-fit w-[33%] mx-auto text-white">Title</p>
+                            <p class="font-bold min-h-fit w-[33%] mx-auto text-white">Description</p>
+                            <p class="font-bold min-h-fit w-[33%] mx-auto text-white"></ion-icon>
+                                <ion-icon name="trash-outline" class="text-xl cursor-pointer"
+                                    onclick="Toggledelete()"></ion-icon>
+                            </p>
+                        </div>
+                    </div>
+                    <div id="result-body" class="flex flex-col items-center">
+                        <!-- <div
+                            class="flex flex-row min-w-fit min-h-fit justify-around mb-4 bg-white border border-black bottom-1 rounded-lg shadow-md">
+                            <p class="w-1/2 text-center"></p>
+                            <p class="w-1/2 text-center"></p>
+                        </div> -->
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+</body>
+
+<!-- javascript code  -->
+
+<script>
+
+    let i = 0;
+
+    function save() {
+        let t1 = document.getElementById("title").value;
+        let d1 = document.getElementById("mytextarea").value;
+
+        if (t1 === null || d1 === null || t1 === "" || d1 === "") {
+            return;
+        }
+
+        var newRow = document.createElement("div");
+
+        newRow.innerHTML = "<p>" + t1 + "</p><p>" + d1 + "</p>";
+
+        var resultBody = document.getElementById("result-body");
+        resultBody.appendChild(newRow);
+
+        clearInputs();
+
+    }
+
+    function Toggledelete() {
+        let delete1 = document.getElementById("result-body");
+        // console.log(delete1);
+        let delete2 = delete1.getElementsByTagName("div");
+        // console.log(delete2);
+
+        let myvalue = delete2.length;
+        // console.log(myvalue);
+        
+        // console.log(delete2[myvalue-1]);
+        delete2[myvalue-1].remove();
+
+    }
+
+    function clearInputs() {
+
+        document.getElementById("title").value = "";
+        document.getElementById("mytextarea").value = "";
+    }
+
+</script>
+
+</html>
